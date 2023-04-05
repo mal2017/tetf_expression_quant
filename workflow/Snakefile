@@ -1,0 +1,47 @@
+import sys
+import peppy
+import glob
+
+#configfile: "../../config/config.yaml"
+configfile: "config/config.yaml"
+pepfile: config.get("PEP")
+
+SAMPLES = [x.sample_name for x in pep.samples]
+SAMPLES = SAMPLES if config.get("RUN_TYPE") != "test" else [x.sample_name for x in pep.samples if list(set(x.Strain))[0] in ['DGRP_100','DGRP_101']]
+
+SUBSAMPLE_TABLE = pep.subsample_table
+SUBSAMPLE_TABLE = pep.subsample_table.loc[[x in SAMPLES for x in pep.subsample_table['sample_name']]]
+
+REP_LIST = list(range(config.get("SALMON_REPLICATES",3)))
+
+
+ruleorder: concat_pe_runs > concat_runs > fasterq_dump
+
+subworkflow wgs_wf:
+    workdir:
+        "../../tetf_dgrp_wgs/"
+    snakefile:
+        "../../tetf_dgrp_wgs/workflow/Snakefile"
+
+subworkflow refs_wf:
+    workdir:
+        "../../tetf_refs/"
+    snakefile:
+        "../../tetf_refs/workflow/Snakefile"
+
+subworkflow tidal_wf:
+    workdir:
+        "../../tetf_tidal/"
+    snakefile:
+        "../../tetf_tidal/workflow/Snakefile"
+
+
+include: "rules/download.smk"
+include: "rules/trim.smk"
+include: "rules/utils.smk"
+include: "rules/salmon.smk"
+include: "rules/metadata.smk"
+
+rule all:
+    input:
+        expand("results/quantification/vanilla_salmon_tes_transcripts/se.gene.{qr}.rds", qr=REP_LIST),
