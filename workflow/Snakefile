@@ -45,3 +45,4 @@ include: "rules/metadata.smk"
 rule all:
     input:
         expand("results/quantification/vanilla_salmon_tes_transcripts/se.gene.{qr}.rds", qr=REP_LIST),
+        "results/meta/metadata.csv"
