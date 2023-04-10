@@ -46,6 +46,8 @@ localrules: get_pipeline_info
 rule get_pipeline_info:
     output:
         "results/meta/pipeline_meta.txt"
+    conda:
+        "../envs/git.yaml"
     shell:
         """
         git rev-parse HEAD > {output} &&
