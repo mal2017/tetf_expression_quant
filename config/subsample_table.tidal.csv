@@ -1,3 +1,4 @@
+sample_name,source_name,Strain,sex,age
 DGRP_Line_101_Male_SAMN09738705,SAMN09738705,RNA-Seq,SINGLE,TRANSCRIPTOMIC,cDNA,Illumina HiSeq 2500,male,3-5 days old,cornmeal-molasses-agar,DGRP_101,Whole flies,SRX4483520,SRR7619158
 DGRP_Line_105_Female_SAMN09738702,SAMN09738702,RNA-Seq,SINGLE,TRANSCRIPTOMIC,cDNA,Illumina HiSeq 2500,female,3-5 days old,cornmeal-molasses-agar,DGRP_105,Whole flies,SRX4483523,SRR7619163
 DGRP_Line_109_Female_SAMN09738698,SAMN09738698,RNA-Seq,SINGLE,TRANSCRIPTOMIC,cDNA,Illumina HiSeq 2500,female,3-5 days old,cornmeal-molasses-agar,DGRP_109,Whole flies,SRX4483527,SRR7619169
