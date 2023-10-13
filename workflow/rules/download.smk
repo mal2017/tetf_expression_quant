@@ -14,6 +14,7 @@ rule fasterq_dump:
     priority: 1
     conda:
         "../envs/sratools.yaml"
+    retries: 4
     shell:
         """
         mkdir -p {output} &&
